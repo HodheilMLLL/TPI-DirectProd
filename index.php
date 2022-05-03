@@ -20,8 +20,14 @@ include 'vues/header.php';
 
 // Gestion des affichages
 switch ($page) {
-    case 'home': // Affichage de la page d'accueil
+    case 'home': // Affichage de la page d'Accueil
         include 'vues/home.php';
+        break;
+    case 'register' : // Inscription
+        include 'controllers/register_controller.php';
+        break;
+    case 'login' : // Connexion
+        include 'controllers/login_controller.php';
         break;
 }
 
