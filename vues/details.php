@@ -150,7 +150,8 @@
     <!-- Laisser un avis (apparaît seulement si l'utilisateur est connecté) -->
 
     <!-- Avis -->    
-    <div class="col-12 col-md-10 mb-11 mx-auto">
+    <div class="container pb-5">
+    <div class="col-12 col-md-10 mx-auto">
     <h1 class="h1">Avis</h1>
                     <div class="card mb-3">                        
                         <div class="card-body">
@@ -191,3 +192,4 @@
                         </div>
                     </div>
             </div>
+</div>
