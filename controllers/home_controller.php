@@ -1,7 +1,9 @@
 <?php
+// Récupération de l'action
 $action = filter_input(INPUT_GET, 'action');
+
 switch ($action) {
-    case 'show':
+    case 'show': // Affichage de la page
         include 'vues/home.php';
         break;    
 }

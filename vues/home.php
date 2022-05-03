@@ -16,15 +16,17 @@
     </div>
 
     <!-- Start Featured Product -->
+    
     <section class="bg-light">
         <div class="container py-5">
             <div class="row text-center py-3">
                 <div class="col-lg-6 m-auto">
-                    <h1 class="h1">Featured Product</h1>
-                    <p>
-                        Reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                        Excepteur sint occaecat cupidatat non proident.
-                    </p>
+                    <div class="input-group">
+                            <input type="text" class="form-control" id="inputMobileSearch" placeholder="Rechercher...">
+                            <button type="submit" class="input-group-text bg-success text-light">
+                        <i class="fa fa-fw fa-search text-white"></i>
+                    </button>
+                        </div>
                 </div>
             </div>
             <div class="row">

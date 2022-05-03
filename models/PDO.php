@@ -1,32 +1,16 @@
-<?php // Template du pdo
-
-/**
- * Casse d'accès aux données Utilise les services de la classe PDO
- * 
- */
+<?php
 
 class MonPdo
 {
-    // Modifier ces informations en fonction de votre base de données
-    private static $serveur = 'mysql:host=localhost'; // doit commencer par : mysql:host=
-    private static $bdd = 'dbname=fakebook'; // doit commencer par : dbname=
+    private static $serveur = 'mysql:host=localhost';
+    private static $bdd = 'dbname=directProd';
     private static $user = 'root';
     private static $mdp = 'Hodheil';
     private static $monPdo;
     private static $unPdo = null;
-    
-    /*
-    private static $serveur = 'mysql:host=localhost';
-    private static $bdd = 'dbname=website_showcase';
-    private static $user = 'root';
-    private static $mdp = '';
-    private static $monPdo;
-    private static $unPdo = null;
-    */
 
     // Constructeur privé, crée l'instance de PDO qui sera solicité
     // pour toutes les méthodes de la classe
-
     private function __construct()
     {
         MonPdo::$unPdo = new PDO(MonPdo::$serveur . ";" . MonPdo::$bdd, MonPdo::$user, MonPdo::$mdp);
