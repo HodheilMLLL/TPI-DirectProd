@@ -31,7 +31,7 @@
             <div class="row">
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
-                        <a href="shop-single.html">
+                        <a href="index.php?page=details&action=show">
                             <img src="./assets/img/feature_prod_01.jpg" class="card-img-top" alt="...">
                         </a>
                         <div class="card-body">
@@ -54,7 +54,8 @@
                                 <li>
                                     <p class="text-muted">Avis (24)</p>
                                 </li>
-                                <li><a href="#"><button type="button" class="btn btn-success" id="idAdvertisement">Détails</i></button></a></li>
+                                <!-- Lien dynamique vers la page détails de l'annonce -->
+                                <li><a href="index.php?page=details&action=show"><button type="button" class="btn btn-success" id="idAdvertisement">Détails</i></button></a></li>
                             </ul>
                         </div>
                     </div>
