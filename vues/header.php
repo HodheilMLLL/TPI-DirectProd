@@ -13,9 +13,12 @@
     <link rel="stylesheet" href="assets/css/templatemo.css">
     <link rel="stylesheet" href="assets/css/custom.css">
 
+    
+
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="assets/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--
     
 TemplateMo 559 Zay Shop
@@ -53,9 +56,8 @@ https://templatemo.com/tm-559-zay-shop
                             <a class="nav-link" href="index.php?page=profile&action=show">Profil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">Mes annonces</a>
-                        </li>
-                        
+                            <a class="nav-link" href="index.php?page=myAdverts&action=show">Mes annonces</a>
+                        </li>                        
                         <li class="nav-item">
                             <a class="nav-link" href="index.php?page=login&action=disconnect">Déconnexion</a>
                         </li>';
@@ -78,8 +80,8 @@ https://templatemo.com/tm-559-zay-shop
                         </li>
                         */
                         ?>
-                        
-                        </ul>
+
+                    </ul>
                 </div>
             </div>
             <!-- End Nav -->

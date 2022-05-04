@@ -26,7 +26,7 @@ include 'vues/header.php';
 // Gestion des affichages
 switch ($page) {
     case 'home': // Accueil
-        include 'controllers/home_controller.php';
+        include 'vues/home.php';
         break;
     case 'register': // Inscription
         include 'controllers/register_controller.php';
@@ -39,6 +39,12 @@ switch ($page) {
         break;
     case 'profile': // Profil
         include 'controllers/profile_controller.php';
+        break;
+    case 'myAdverts' : // Mes annonces
+        include 'controllers/myAdverts_controller.php';
+        break;
+    case 'newAdvert' : // Nouvelle annonce
+        include 'controllers/newAdvert_controller.php';
         break;
 }
 

@@ -11,6 +11,9 @@ switch ($action) {
         header('Location: index.php?page=home&action=show');
         break;
     case 'disconnect' : // Déconnexion
+        // Déconnexion de l'utilisateur
         $_SESSION['actualUser']['isConnected'] = false;
-        header('Location: index.php?page=home&action=show');
+
+        // Redirection vers la page où l'utilisateur se trouvait précédemment
+        header('Location: index.php?page=home&action=show'); 
 }

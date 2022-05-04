@@ -15,10 +15,11 @@
         </div>
     </div>
 
-    <!-- Start Featured Product -->
+    <!-- Start Advertisements -->
     <section class="bg-light">
         <div class="container py-5">
             <div class="row text-center py-3">
+                <h1 class="h1">Annonces</h1>
                 <div class="col-lg-6 m-auto">
                     <div class="input-group">
                         <input type="text" class="form-control" id="inputMobileSearch" placeholder="Rechercher...">
@@ -111,4 +112,4 @@
             </div>
         </div>
     </section>
-    <!-- End Featured Product -->
+    <!-- End Advertisements -->
