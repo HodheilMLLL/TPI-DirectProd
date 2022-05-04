@@ -19,6 +19,7 @@ ini_set('display_errors', 1);
 
 // Implémentation des models
 include 'models/PDO.php';
+include 'models/User.php';
 
 // Affichage du header
 include 'vues/header.php';

@@ -3,7 +3,7 @@
 class MonPdo
 {
     private static $serveur = 'mysql:host=localhost';
-    private static $bdd = 'dbname=directProd';
+    private static $bdd = 'dbname=dbDirectProd';
     private static $user = 'root';
     private static $mdp = 'Hodheil';
     private static $monPdo;
