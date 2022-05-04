@@ -4,7 +4,7 @@ $action = filter_input(INPUT_GET, 'action');
 
 switch ($action) {
     case 'show': // Affichage de la page
-        include 'vues/newAdvert.php';
+        include 'vues/userAdverts/newAdvert.php';
         break;
     case 'submit' : // Validation de l'annonce
         echo "Validation de l'annonce";

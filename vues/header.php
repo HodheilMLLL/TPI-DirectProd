@@ -57,7 +57,18 @@ https://templatemo.com/tm-559-zay-shop
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="index.php?page=myAdverts&action=show">Mes annonces</a>
-                        </li>                        
+                        </li>    
+
+                        <div class="dropdown">
+                        <a class="btn dropdown-toggle" href="#" role="button" id="adminDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                          Administration
+                        </a>                      
+                        <ul class="dropdown-menu" aria-labelledby="adminDropdown">
+                          <li><a class="dropdown-item" href="index.php?page=adminAdverts&action=show">Gestion des annonces</a></li>
+                          <li><a class="dropdown-item" href="index.php?page=adminUsers&action=show">Gestion des utilisateurs</a></li>
+                        </ul>
+
+                      </div>                   
                         <li class="nav-item">
                             <a class="nav-link" href="index.php?page=login&action=disconnect">Déconnexion</a>
                         </li>';
@@ -69,16 +80,6 @@ https://templatemo.com/tm-559-zay-shop
                             <a class="nav-link" href="index.php?page=register&action=show">Inscription</a>
                         </li>';
                         }
-
-                        // Partie admin (if isAdmin)
-                        /*
-                        <li class="nav-item">
-                            <a class="nav-link" href="">Gestion annonces</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="">Gestion utilisateurs</a>
-                        </li>
-                        */
                         ?>
 
                     </ul>

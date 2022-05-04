@@ -40,11 +40,23 @@ switch ($page) {
     case 'profile': // Profil
         include 'controllers/profile_controller.php';
         break;
-    case 'myAdverts' : // Mes annonces
-        include 'controllers/myAdverts_controller.php';
+    case 'myAdverts': // Mes annonces
+        include 'controllers/userAdvertsController/myAdverts_controller.php';
         break;
-    case 'newAdvert' : // Nouvelle annonce
-        include 'controllers/newAdvert_controller.php';
+    case 'newAdvert': // Nouvelle annonce
+        include 'controllers/userAdvertsController/newAdvert_controller.php';
+        break;
+    case 'editAdvert': // Modification d'une annonce
+        include 'controllers/userAdvertsController/editAdvert_controller.php';
+        break;
+    case 'adminAdverts': // Administration - Gestion des annonces
+        include 'controllers/adminController/adminAdvertManagement_controller.php';
+        break;
+    case 'adminUsers': // Administration - Gestion des utilisateurs
+        include 'controllers/adminController/adminUserManagement_controller.php';
+        break;
+    default:
+        include 'vues/error404.php';
         break;
 }
 
