@@ -183,7 +183,9 @@ if ($_SESSION['actualUser']['isConnected'] == true) {
 <!-- Start Avis -->
 <div class="container pb-5">
     <div class="col-12 col-md-10 mx-auto">
-        <h1 class="h1">Avis</h1>
+        <!-- Si c'est l'annonce de l'utilisateur connecté, il ne peut pas laisser d'avis !" -->
+        <!-- S'il n'y a aucun avis, afficher "Aucun avis, soyez le premier !" -->
+        <h1 class="h1 mt-3">Avis</h1>
         <div class="card mb-3">
             <div class="card-body">
                 <ul class="list-unstyled d-flex justify-content-between">

@@ -1,7 +1,7 @@
 <!-- Start New Advertisement -->
 <div class="container py-5">
     <div class="row py-5">
-        <form class="col-md-9 m-auto" method="post" action="index.php?page=register&action=registerCheck" role="form" enctype="multipart/form-data">
+        <form class="col-md-9 m-auto" method="post" action="index.php?page=newAdvert&action=submit" role="form" enctype="multipart/form-data">
             <div class="form-group col-md-6 mb-3">
                 <label for="title">Titre</label>
                 <input type="text" class="form-control mt-1" id="title" name="title" placeholder="Titre">
@@ -20,7 +20,7 @@
             </div>        
             <div class="row">
                 <div class="col text-end mt-2">
-                    <button type="submit" class="btn btn-success btn-lg px-3">Publier l'annonce</button>
+                    <button type="submit" class="btn btn-success btn-lg px-3">Soumettre l'annonce</button>
                 </div>
             </div>
 
