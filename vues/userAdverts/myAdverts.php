@@ -6,6 +6,13 @@
         width: 1%
     }
 </style>
+<?php
+// Si l'utilisateur n'est pas connecté
+if ($_SESSION['actualUser']['isConnected'] == false) {
+    // Redirection vers la page d'accueil
+    header('Location: index.php?page=home&action=show');
+}
+?>
 <div class="container py-5">
     <?php
     // message de confirmation

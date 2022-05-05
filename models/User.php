@@ -219,10 +219,10 @@ class User
 
 
         // Valeurs par défauts, car non obligatoires
-        if ($username = "") {
+        if ($username == "") {
             $username = "Anonyme";
         }
-        if ($description = "") {
+        if ($description == "") {
             $description = "Aucune description";
         }
 
@@ -260,18 +260,6 @@ class User
             return true;
         }        
     }
-        
-    /**
-     * Cryptage du mot de passe en sha256
-     *
-     * @param  mixed $password
-     * @return string Mot de passe crypté
-     */
-    public static function sha256Converter($password)
-    {
-        $hashedPassword = hash('sha256', $password);
-        return $hashedPassword;
-    }
     
     /**
      * Connexion de l'utilisateur
@@ -281,15 +269,13 @@ class User
      */
     public static function connect(User $givenUser)
     {
-        $mdpHash = User::sha256Converter($givenUser->getPassword());
-
         $req = MonPdo::getInstance()->prepare("SELECT * FROM USER");
         $req->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'User');
         $req->execute();
         $users = $req->fetchALL();
         foreach ($users as $user) {
             // Si l'email et le mot de passe correspondent
-            if ($user->getEmail() == $givenUser->getEmail() && $user->getPassword() == $mdpHash) {
+            if ($user->getEmail() == $givenUser->getEmail() && password_verify($givenUser->getPassword(), $user->getPassword())) {
                 return $user;
             }
         }

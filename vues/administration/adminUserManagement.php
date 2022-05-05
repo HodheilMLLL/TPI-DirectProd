@@ -1,4 +1,11 @@
 <!-- Start My Advertisements -->
+<?php
+// Si l'utilisateur n'est pas admin
+if ($_SESSION['actualUser']['isAdmin'] != 1) {
+    // Redirection vers la page d'accueil
+    header('Location: index.php?page=home&action=show');
+}
+?>
 <style>
     /* Permet d'aligner la dernière colonne sur la droite */
     #myAdvertsTable tbody tr td:last-child {
