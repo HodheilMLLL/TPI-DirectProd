@@ -17,7 +17,9 @@
             ?>
             <div class="form-group col-md-6 mb-3">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control mt-1" id="email" name="email" placeholder="Email" required>
+                    <input type="email" class="form-control mt-1" id="email" name="email" placeholder="Email" value="<?php if (isset($_POST['email'])) {
+                                                                                                                            echo $_POST['email'];
+                                                                                                                        } ?>" required>
                 </div>
                 <div class="form-group col-md-6 mb-3">
                     <label for="password">Mot de passe</label>

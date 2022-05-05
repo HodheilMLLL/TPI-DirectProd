@@ -218,6 +218,14 @@ class User
         $description = $user->getDescription();
 
 
+        // Valeurs par défauts, car non obligatoires
+        if ($username = "") {
+            $username = "Anonyme";
+        }
+        if ($description = "") {
+            $description = "Aucune description";
+        }
+
         $req = MonPdo::getInstance()->prepare("INSERT INTO `USER`(`password`, `email`, `username`, `city`, `canton`, `postalCode`, `address`, `description`) VALUES (:myPassword, :email, :username, :city, :canton, :postalCode, :myAddress, :myDescription)");
         $req->bindParam(':myPassword', $password);
         $req->bindParam(':email', $email);
@@ -229,6 +237,7 @@ class User
         $req->bindParam(':myDescription', $description);
         $req->execute();
 
+        // Retourne l'id de l'utilisateur qui vient d'être crée
         return MonPdo::getInstance()->lastInsertId();
     }
         
@@ -256,7 +265,7 @@ class User
      * Cryptage du mot de passe en sha256
      *
      * @param  mixed $password
-     * @return string
+     * @return string Mot de passe crypté
      */
     public static function sha256Converter($password)
     {
@@ -285,6 +294,47 @@ class User
             }
         }
         return false;
+    }
+        
+    /**
+     * Retourne tous les utilisateurs, sauf l'admin principal
+     *
+     * @return array
+     */
+    public static function getAllUsers(): array
+    {
+        $req = MonPdo::getInstance()->prepare("SELECT * FROM `USER` WHERE idUser <> 1");
+        $req->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'User');
+        $req->execute();
+        $res = $req->fetchAll();
+
+        return $res;
+    }
+
+    /**
+     * Promotion d'un utilisateur
+     *
+     * @param  mixed $idUser
+     * @return void
+     */
+    public static function promoteUser($idUser)
+    {       
+        $req = MonPdo::getInstance()->prepare("UPDATE `USER` SET `isAdmin` = 1 WHERE `idUser` = :idUser");  
+        $req->bindParam(':idUser', $idUser);
+        $req->execute();
+    }
+
+    /**
+     * Rétrogradation d'un utilisateur
+     *
+     * @param  mixed $idUser
+     * @return void
+     */
+    public static function demoteUser($idUser)
+    {       
+        $req = MonPdo::getInstance()->prepare("UPDATE `USER` SET `isAdmin` = 0 WHERE `idUser` = :idUser");  
+        $req->bindParam(':idUser', $idUser);
+        $req->execute();
     }
 }
 ?>

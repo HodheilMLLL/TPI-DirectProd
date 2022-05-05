@@ -57,8 +57,7 @@ switch ($action) {
             $user->setCity($city);
             $user->setCanton($canton);
             $user->setPostalCode($postalCode);
-            $user->setAddress($address);
-           
+            $user->setAddress($address);           
             $user->setDescription($description);
             $idUser = User::addUser($user);
             

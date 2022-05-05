@@ -15,12 +15,16 @@ switch ($action) {
             $user = new User();
             $user->setEmail($email);
             $user->setPassword($password);
-            $ConnectedUser = User::connect($user);
+            $connectedUser = User::connect($user);
             
-            if ($ConnectedUser != false) {
+            if ($connectedUser != false) {
                 $_SESSION['actualUser']['isConnected'] = true;
-                $_SESSION['actualUser']['idUser'] = $ConnectedUser->getIdUser();
-                // Garder aussi s'il est admin ou non
+                $_SESSION['actualUser']['idUser'] = $connectedUser->getIdUser();
+                if ($connectedUser->getIsAdmin() == 1) {
+                    $_SESSION['actualUser']['isAdmin'] = true;
+                } else {
+                    $_SESSION['actualUser']['isAdmin'] = false;
+                }
 
                 // Redirection
                 header('Location: index.php?page=home&action=show');
@@ -36,11 +40,10 @@ switch ($action) {
         break;
     case 'disconnect' : // Déconnexion
         // Déconnexion de l'utilisateur
-        // $_SESSION['actualUser']['isConnected'] = false;
         session_destroy();
         session_unset();
 
-        // Redirection vers l'acceuil
-        header('Location: index.php?page=home&action=show'); 
+        // Redirection vers la page de connexion
+        header('Location: index.php?page=login&action=show'); 
         break;
 }

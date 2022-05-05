@@ -9,22 +9,28 @@ if (!isset($_SESSION['actualUser']['isConnected'])) {
     // Session de l'utilisateur
     $_SESSION['actualUser']['isConnected'] = false;
 }
+if (!isset($_SESSION['actualUser']['isAdmin'])) {
+    // Session de l'utilisateur
+    $_SESSION['actualUser']['isAdmin'] = false;
+}
 
 // Remise à zero des messages d'erreurs
 $_SESSION['messageAlert']['type'] = null;
 $_SESSION['messageAlert']['message'] = null;
 
-// Affichage des erreurs
+// Utilisé afin d'afficher toutes les erreurs
 ini_set('display_errors', 1);
 
-// Implémentation des models
+// Implémentation des classes
 include 'models/PDO.php';
 include 'models/User.php';
+include 'models/Advert.php';
+include 'models/Picture.php';
 
 // Affichage du header
 include 'vues/header.php';
 
-// Gestion des affichages
+// Gestion des pages
 switch ($page) {
     case 'home': // Accueil
         include 'vues/home.php';
@@ -56,7 +62,7 @@ switch ($page) {
     case 'adminUsers': // Administration - Gestion des utilisateurs
         include 'controllers/adminController/adminUserManagement_controller.php';
         break;
-    default:
+    default: // Par défaut, page d'erreur 404
         include 'vues/error404.php';
         break;
 }

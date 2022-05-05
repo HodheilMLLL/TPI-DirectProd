@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="assets/css/templatemo.css">
     <link rel="stylesheet" href="assets/css/custom.css">
 
-    
+
 
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
@@ -50,16 +50,9 @@ https://templatemo.com/tm-559-zay-shop
                             <a class="nav-link" href="index.php?page=home&action=show">Accueil</a>
                         </li>
                         <?php
-                        // Si un utilisateur est connecté, affichage de la navigation correspondante
-                        if ($_SESSION['actualUser']['isConnected'] == true) {
-                            echo '<li class="nav-item">
-                            <a class="nav-link" href="index.php?page=profile&action=show">Profil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.php?page=myAdverts&action=show">Mes annonces</a>
-                        </li>    
-
-                        <div class="dropdown">
+                        // Affichage de la navigation correspondante à l'utilisateur actuel
+                        if ($_SESSION['actualUser']['isAdmin'] == true) {
+                            echo '<div class="dropdown">
                         <a class="btn dropdown-toggle" href="#" role="button" id="adminDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                           Administration
                         </a>                      
@@ -67,9 +60,19 @@ https://templatemo.com/tm-559-zay-shop
                           <li><a class="dropdown-item" href="index.php?page=adminAdverts&action=show">Gestion des annonces</a></li>
                           <li><a class="dropdown-item" href="index.php?page=adminUsers&action=show">Gestion des utilisateurs</a></li>
                         </ul>
-
-                      </div>                   
+                        </div>';
+                        }
+                        if ($_SESSION['actualUser']['isConnected'] == true && $_SESSION['actualUser']['isAdmin'] == false) {
+                            echo '<li class="nav-item">
+                            <a class="nav-link" href="index.php?page=profile&action=show">Profil</a>
+                        </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="index.php?page=myAdverts&action=show">Mes annonces</a>
+                        </li>';                                        
+                        }
+
+                        if ($_SESSION['actualUser']['isConnected'] == true) {
+                            echo '<li class="nav-item">
                             <a class="nav-link" href="index.php?page=login&action=disconnect">Déconnexion</a>
                         </li>';
                         } else {
