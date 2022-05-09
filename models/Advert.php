@@ -191,7 +191,7 @@ class Advert
     }
   
     /**
-     * updateAdvert
+     * Mise à jour d'une annonce
      *
      * @param  mixed $advert
      * @param  mixed $idAdvert
