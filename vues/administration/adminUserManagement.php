@@ -31,6 +31,7 @@ if ($_SESSION['actualUser']['isAdmin'] != 1) {
     <table class="table table-striped" id="myAdvertsTable">
         <thead>
             <tr>
+                <th scope="col">Email</th>
                 <th scope="col">Pseudo</th>
                 <th scope="col">Rôle</th>
                 <th scope="col">Action</th>
@@ -43,6 +44,8 @@ if ($_SESSION['actualUser']['isAdmin'] != 1) {
             $allUsers = User::getAllUsers();
             foreach ($allUsers as $user) {
                 echo '<tr>
+                <td scope="row">' . $user->getEmail() . '</td>';
+                echo '
                 <td scope="row">' . $user->getUsername() . '</td>
                 <td>';
                 if ($user->getIsAdmin() == 0) {
