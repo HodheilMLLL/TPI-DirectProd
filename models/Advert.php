@@ -203,7 +203,7 @@ class Advert
         $description = $advert->getDescription();
         $isOrganic = $advert->getIsOrganic();
 
-        $req = MonPdo::getInstance()->prepare("UPDATE `ADVERTISEMENT` SET `title` = :title, `description` = :myDescription, `isOrganic` = :isOrganic WHERE `idAdvertisement` = :idAdvert");
+        $req = MonPdo::getInstance()->prepare("UPDATE `ADVERTISEMENT` SET `title` = :title, `description` = :myDescription, `isOrganic` = :isOrganic, `isValid` = 0 WHERE `idAdvertisement` = :idAdvert");
         $req->bindParam(':idAdvert', $idAdvert);
         $req->bindParam(':title', $title);
         $req->bindParam(':myDescription', $description);
