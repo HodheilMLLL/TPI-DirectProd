@@ -54,17 +54,17 @@ switch ($action) {
 
                 if (!in_array($extension, $extensions)) //Si l'extension n'est pas dans le tableau
                 {
-                    $erreur = 'Vous devez uploader un fichier de type png, jpg ou jpeg';
+                    array_push($erreurs, "Vous devez uploader un fichier de type png, jpg ou jpeg");
                     // Annulation de la transaction
                     throw new Exception;
                 }
                 if ($taille > $taille_maxi) {
-                    $erreur = "Taille de fichier(s) dépassant la limite";
+                    array_push($erreurs, "Taille de fichier(s) dépassant la limite");
                     // Annulation de la transaction
                     throw new Exception;
                 }
 
-                if (!isset($erreur)) // S'il n'y a pas d'erreur, on upload
+                if (count($erreurs) == 0) // S'il n'y a pas d'erreur, on upload
                 {
                     $temp = explode(".", $_FILES["myImg"]["name"][$i]);
                     $newfilename = round(microtime(true)) . $i . '.' . end($temp);
@@ -90,7 +90,7 @@ switch ($action) {
             // Vérification du non-dépassement de la limite de 200Mo
             if ($taille_tout > $taille_maxi_tout) {
                 // Annulation de la transasction
-                $erreur = "Fichier(s) trop lourd(s)";
+                array_push($erreurs, "Fichier(s) trop lourd(s)");
                 throw new Exception;
             }
         } catch (\Throwable $th) {
@@ -109,7 +109,9 @@ switch ($action) {
         } catch (\Throwable $th) {
             // Affichage d'un message d'erreur
             $_SESSION['messageAlert']['type'] = "danger";
-            $_SESSION['messageAlert']['message'] = $erreur;
+            foreach ($erreurs as $erreur) {
+                $_SESSION['messageAlert']['message'] .= $erreur . "<br/>";
+            }
 
             // Suppression des fichiers qui ont été crées
             foreach ($createdFiles as $file) {
