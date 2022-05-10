@@ -36,9 +36,9 @@
                     echo '<div class="col-12 col-md-4 mb-4">
                             <div class="card h-100">
                                 <a href="index.php?page=details&action=show&idAdvert=' . $idAdvert . '">
-                                    <img src="uploads/' . $defaultPicture . '" class="card-img-top" alt="Image d\'annonce">
+                                    <img src="uploads/' . $defaultPicture . '" class="card-img-top" alt="Image d\'annonce" height="250">
                                 </a>
-                                <div class="card-body">
+                                <div class="card-body d-flex flex-column">
                                     <ul class="list-unstyled d-flex justify-content-between">
                                         <li>';
 
@@ -81,7 +81,7 @@
                     echo '<p class="card-text">
                                         ' . $advert->getDescription() . '
                                     </p>
-                                    <ul class="list-unstyled d-flex justify-content-between">
+                                    <ul class="list-unstyled d-flex justify-content-between mt-auto mb-0">
                                     <li>
                                     <p class="text-muted">Avis (' . $countRates . ')</p>
                                     </li>
