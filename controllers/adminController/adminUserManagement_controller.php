@@ -10,12 +10,16 @@ switch ($action) {
         $idUser = filter_input(INPUT_GET, 'idUser');
 
         User::promoteUser($idUser);
-        include 'vues/administration/adminUserManagement.php';
+
+        // Redirection
+        header('Location: index.php?page=adminUsers&action=show');
         break;
     case 'demote': // Rétrogradation de l'utilisateur
         $idUser = filter_input(INPUT_GET, 'idUser');
 
         User::demoteUser($idUser);
-        include 'vues/administration/adminUserManagement.php';
+        
+        // Redirection
+        header('Location: index.php?page=adminUsers&action=show');
         break;
 }

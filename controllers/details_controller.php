@@ -13,7 +13,7 @@ switch ($action) {
         $idUser = $_SESSION['actualUser']['idUser'];
 
         // Vérification
-        if ($rating != "" && $comment != "") {
+        if ($rating != "" && $comment != "" && $rating <= 5 && $rating >= 0) {
             try {
                 $rate = new Rate();
                 $rate->setRating($rating);
@@ -25,7 +25,7 @@ switch ($action) {
             }
         } else {
             $_SESSION['messageAlert']['type'] = "danger";
-            $_SESSION['messageAlert']['message'] = "Merci de remplir tous les champs";
+            $_SESSION['messageAlert']['message'] = "Merci de remplir tous les champs correctement";
         }
 
         include 'vues/details.php';

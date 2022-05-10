@@ -10,12 +10,16 @@ switch ($action) {
         $idAdvert = filter_input(INPUT_GET, 'idAdvert');
 
         Advert::validateAdvert($idAdvert);
-        include 'vues/administration/adminAdvertManagement.php';
+
+        // Redirection
+        header('Location: index.php?page=adminAdverts&action=show');
         break;
     case 'reject': // Rejection de l'annonce
         $idAdvert = filter_input(INPUT_GET, 'idAdvert');
 
         Advert::rejectAdvert($idAdvert);
-        include 'vues/administration/adminAdvertManagement.php';
+
+        // Redirection
+        header('Location: index.php?page=adminAdverts&action=show');
         break;
 }
