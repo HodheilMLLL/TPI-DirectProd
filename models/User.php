@@ -410,5 +410,27 @@ class User
 
         return $res;  
     }
+
+    /**
+     * Récupère les informations d'un utilisateur par son id d'avis (id d'annonce et id d'utilisateur)
+     *
+     * @param  mixed $idAdvert
+     * @param  mixed $idUser
+     * @return object
+     */
+    public static function getUserByRateAdvertId($idAdvert, $idUser)
+    {
+        $req = MonPdo::getInstance()->prepare("SELECT * FROM USER as u 
+        INNER JOIN RATE as r ON u.idUser = r.idUser
+        WHERE idAdvertisement = :idAdvert AND u.idUser = :idUser");
+
+        $req->bindParam(':idAdvert', $idAdvert);
+        $req->bindParam(':idUser', $idUser);
+        $req->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE,'User');
+        $req->execute();
+        $res=$req->fetch();
+
+        return $res;  
+    }
 }
 ?>

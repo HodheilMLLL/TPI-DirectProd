@@ -41,14 +41,14 @@ if ($_SESSION['actualUser']['isAdmin'] != 1) {
 
             $allInvalidAdverts = Advert::getAllInvalidAdverts();
             foreach ($allInvalidAdverts as $invalidAdvert) {
-
+                $idAdvert = $invalidAdvert->getIdAdvert();
                 echo '<tr>
                 <td scope="row">' . $invalidAdvert->getTitle() . '</td>
                 <td>' . $invalidAdvert->getDescription() . '</td>
                 <td>
-                    <a href="#"><button type="button" class="btn btn-warning" id=""><i class="fa fa-eye"></i></button></a>
-                    <a href="index.php?page=adminAdverts&action=validate&idAdvert=' . $invalidAdvert->getIdAdvert() . '"><button type="button" class="btn btn-success"><i class="fa fa-check"></i></button></a>
-                    <a href="index.php?page=adminAdverts&action=reject&idAdvert=' . $invalidAdvert->getIdAdvert() . '"><button type="button" class="btn btn-danger"><i class="fa fa-times"></i></button></a>
+                    <a href="index.php?page=details&action=show&idAdvert=' . $idAdvert . '"><button type="button" class="btn btn-warning"><i class="fa fa-eye"></i></button></a>
+                    <a href="index.php?page=adminAdverts&action=validate&idAdvert=' . $idAdvert . '"><button type="button" class="btn btn-success"><i class="fa fa-check"></i></button></a>
+                    <a href="index.php?page=adminAdverts&action=reject&idAdvert=' . $idAdvert . '"><button type="button" class="btn btn-danger"><i class="fa fa-times"></i></button></a>
                 </td>
             </tr>';
             }

@@ -26,6 +26,7 @@ include 'models/PDO.php';
 include 'models/User.php';
 include 'models/Advert.php';
 include 'models/Picture.php';
+include 'models/Rate.php';
 
 // Affichage du header
 include 'vues/header.php';
