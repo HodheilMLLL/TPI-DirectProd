@@ -18,7 +18,7 @@ switch ($action) {
 
         try {
             // Récupère touts les medias en lien avec ce post
-            $allPictures = Picture::getPictureByAdvertId($idAdvert);
+            $allPictures = Picture::getPicturesByAdvertId($idAdvert);
 
             // Suppression de l'annonce (cela supprimera aussi les images côté bd car la table est ON DELETE CASCADE)
             Advert::deleteAdvertById($idAdvert);

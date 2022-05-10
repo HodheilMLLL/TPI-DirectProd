@@ -225,6 +225,21 @@ class Advert
 
         return $res;
     }
+
+     /**
+     * Récupère toutes les annonces valides
+     *
+     * @return array
+     */
+    public static function getAllValidAdverts(): array
+    {
+        $req = MonPdo::getInstance()->prepare("SELECT * FROM `ADVERTISEMENT` WHERE `isValid` = 1");
+        $req->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Advert');
+        $req->execute();
+        $res = $req->fetchAll();
+
+        return $res;
+    }
     
     /**
      * Validation d'une annonce
@@ -250,5 +265,20 @@ class Advert
         $req = MonPdo::getInstance()->prepare("UPDATE `ADVERTISEMENT` SET `isValid` = 2 WHERE `idAdvertisement` = :idAdvert");  
         $req->bindParam(':idAdvert', $idAdvert);
         $req->execute();
+    }
+
+    /**
+     * Retourne toutes les annonces
+     *
+     * @return array
+     */
+    public static function getAllAdverts(): array
+    {
+        $req = MonPdo::getInstance()->prepare("SELECT * FROM `ADVERTISEMENT`");
+        $req->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Advert');
+        $req->execute();
+        $res = $req->fetchAll();
+
+        return $res;
     }
 }

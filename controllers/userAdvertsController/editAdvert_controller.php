@@ -119,8 +119,8 @@ switch ($action) {
                 unlink("$dossier/" . $file);
             }
 
-            // Redirection
-            header('Location: index.php?page=editAdvert&action=show&idAdvert=' . $idAdvert . '');
+            // Redirection en cas d'erreur
+            include 'vues/userAdverts/editAdvert.php';
         }        
         break;
     case 'deletePicture': // Suppression d'une image

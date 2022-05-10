@@ -93,7 +93,7 @@ class Picture
      * @param  mixed $idAdvert
      * @return object
      */
-    public static function getPictureByAdvertId($idAdvert)
+    public static function getPicturesByAdvertId($idAdvert)
     {
         $req = MonPdo::getInstance()->prepare("SELECT * FROM `PICTURE` WHERE `ADVERTISEMENT_idAdvertisement` = :idAdvert");
         $req->bindParam(':idAdvert', $idAdvert);

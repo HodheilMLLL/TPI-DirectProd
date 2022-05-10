@@ -25,7 +25,7 @@ switch ($action) {
             $extensions = array('.png', '.jpg', '.jpeg');
             $createdFiles = array();
 
-            unset($erreur);
+            $erreurs = array();
 
             // Vérification du produit bio
             if ($isOrganic != null) {

@@ -5,10 +5,16 @@ if ($_SESSION['actualUser']['isConnected'] == false) {
     // Redirection vers la page d'accueil
     header('Location: index.php?page=home&action=show');
 }
+
+// Récupération des données
+$idAdvert = filter_input(INPUT_GET, 'idAdvert');
+
+// Récupère les informations de l'annonce
+$advert = Advert::getAdvertById($idAdvert);
 ?>
 <div class="container py-5">
     <div class="row py-5">        
-        <form class="col-md-9 m-auto" method="post" action="index.php?page=editAdvert&action=submit" role="form" enctype="multipart/form-data">   
+        <form class="col-md-9 m-auto" method="post" action="index.php?page=editAdvert&action=submit&idAdvert=<?= $idAdvert ?>" role="form" enctype="multipart/form-data">   
             <?php
             // message de confirmation
             if ($_SESSION['messageAlert']['type'] != null) {
@@ -19,13 +25,7 @@ if ($_SESSION['actualUser']['isConnected'] == false) {
             <?php
                 $_SESSION['messageAlert']['type'] = null;
                 $_SESSION['messageAlert']['message'] = null;
-            }
-
-            // Récupération des données
-            $idAdvert = filter_input(INPUT_GET, 'idAdvert');
-
-            // Récupère les informations de l'annonce
-            $advert = Advert::getAdvertById($idAdvert);
+            }            
             ?>
             <h1 class="h1">Modifier l'annonce</h1>
             <div class="form-group col-md-6 mb-3">
@@ -46,7 +46,7 @@ if ($_SESSION['actualUser']['isConnected'] == false) {
             <?php
             echo '<div class="panel-body">';
 
-            $allPictures = Picture::getPictureByAdvertId($advert->getIdAdvert());
+            $allPictures = Picture::getPicturesByAdvertId($advert->getIdAdvert());
 
             foreach ($allPictures as $picture) {
                 echo '<div>';

@@ -322,5 +322,93 @@ class User
         $req->bindParam(':idUser', $idUser);
         $req->execute();
     }
+    
+    /**
+     * Récupère les informations d'un utilisateur par son id
+     *
+     * @param  mixed $idUser
+     * @return object
+     */
+    public static function getUserById($idUser)
+    {
+        $req = MonPdo::getInstance()->prepare("SELECT * FROM USER WHERE idUser = :idUser");
+        $req->bindParam(':idUser', $idUser);
+        $req->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE,'User');
+        $req->execute();
+        $res=$req->fetch();
+
+        return $res;  
+    }
+       
+    /**
+     * Modification d'un utilisateur
+     *
+     * @param  mixed $user
+     * @param  int $idUser
+     * @return void
+     */
+    public static function editUser(User $user, $idUser){
+        $email = $user->getEmail();
+        $username =$user->getUsername();
+        $city = $user->getCity();
+        $canton = $user->getCanton();
+        $postalCode = $user->getPostalCode();
+        $address =$user->getAddress();
+        $description = $user->getDescription();
+
+
+        // Valeurs par défauts, car non obligatoires
+        if ($username == "") {
+            $username = "Anonyme";
+        }
+        if ($description == "") {
+            $description = "Aucune description";
+        }
+
+        $req = MonPdo::getInstance()->prepare("UPDATE `USER` SET `email` = :email, `username` = :username,`city` = :city,`canton` = :canton,`postalCode` = :postalCode,`address` = :myAddress, `description` = :myDescription WHERE `idUser` = :idUser");
+        $req->bindParam(':email', $email);
+        $req->bindParam(':username', $username);
+        $req->bindParam(':city', $city);
+        $req->bindParam(':canton', $canton);
+        $req->bindParam(':postalCode', $postalCode);
+        $req->bindParam(':myAddress', $address);
+        $req->bindParam(':myDescription', $description);
+        $req->bindParam(':idUser', $idUser);
+        $req->execute();
+    }
+
+    /**
+     * Modification d'un mot de passe
+     *
+     * @param  string $password
+     * @param  int $idUser
+     * @return void
+     */
+    public static function editUserPassword($password, $idUser){
+        $req = MonPdo::getInstance()->prepare("UPDATE `USER` SET `password` = :myPassword WHERE `idUser` = :idUser");
+        $req->bindParam(':myPassword', $password);
+        $req->bindParam(':idUser', $idUser);
+        $req->execute();
+    }
+
+    /**
+     * Récupère les informations d'un utilisateur par son id d'annonce
+     *
+     * @param  mixed $idAdvert
+     * @return object
+     */
+    public static function getUserByAdvertId($idAdvert)
+    {
+        $req = MonPdo::getInstance()->prepare("SELECT * FROM USER as u 
+        INNER JOIN ADVERTISEMENT as a ON u.idUser = a.USER_idUser
+        WHERE idAdvertisement = :idAdvert");
+
+        $req->bindParam(':idAdvert', $idAdvert);
+        $req->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE,'User');
+        $req->execute();
+        $res=$req->fetch();
+
+        return $res;  
+    }
 }
 ?>
