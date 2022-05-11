@@ -58,8 +58,8 @@ $user = User::getUserById($idUser);
                 </div>
             </div>
             <div class="mb-3">
-                <label for="description">Description</label>
-                <textarea class="form-control mt-1" id="description" name="description" placeholder="Description" rows="8"><?= $user->getDescription() ?></textarea>
+                <label for="description">Biographie</label>
+                <textarea class="form-control mt-1" id="description" name="description" placeholder="Biographie" rows="8"><?= $user->getDescription() ?></textarea>
             </div>
             <div class="row">
                 <div class="col text-end mt-2">

@@ -68,8 +68,8 @@
                 </div>
             </div>
             <div class="mb-3">
-                <label for="description">Description</label>
-                <textarea class="form-control mt-1" id="description" name="description" placeholder="Description" rows="8"><?php if (isset($_POST['description'])) {
+                <label for="description">Biographie</label>
+                <textarea class="form-control mt-1" id="description" name="description" placeholder="Biographie" rows="8"><?php if (isset($_POST['description'])) {
                                                                                                                                 echo $_POST['description'];
                                                                                                                             } ?></textarea>
             </div>

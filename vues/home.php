@@ -52,7 +52,7 @@
                         foreach ($rates as $rate) {
                             $totalRating += $rate->getRating();
                         }
-                        $rating = $totalRating / $countRates;
+                        $rating = round($totalRating / $countRates, 1);
                         $stars = floor($rating); // Arrondi de la moyenne
                         // Affichage dynamique des étoiles
                         for ($i = 0; $i < $stars; $i++) {
