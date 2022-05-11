@@ -29,7 +29,8 @@ $firstSlide = true;
                 </div>
                 <div class="row">
                     <?php
-                    if (count($pictures) != 0) {
+                    // Affichage de la flèche de gauche, seulement s'il y'a plus de 3 images
+                    if (count($pictures) > 3) {
                     ?>
                         <!--Start Controls-->
                         <div class="col-1 align-self-center">
@@ -74,7 +75,8 @@ $firstSlide = true;
                     </div>
                     <!--End Carousel Wrapper-->
                     <?php
-                    if (count($pictures) != 0) {
+                    // Affichage de la flèche de droite, seulement s'il y'a plus de 3 images
+                    if (count($pictures) > 3) {
                     ?>
                         <!--Start Controls-->
                         <div class="col-1 align-self-center">
