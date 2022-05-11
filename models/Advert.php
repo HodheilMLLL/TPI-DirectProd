@@ -233,7 +233,7 @@ class Advert
      */
     public static function getAllValidAdverts(): array
     {
-        $req = MonPdo::getInstance()->prepare("SELECT * FROM `ADVERTISEMENT` WHERE `isValid` = 1");
+        $req = MonPdo::getInstance()->prepare("SELECT * FROM `ADVERTISEMENT` WHERE `isValid` = 1 ORDER BY `title` ASC");
         $req->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Advert');
         $req->execute();
         $res = $req->fetchAll();
