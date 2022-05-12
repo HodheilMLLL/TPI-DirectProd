@@ -6,7 +6,9 @@
                 <div class="col-lg-6 m-auto">
                     <form class="col-md-9 m-auto" method="post" action="index.php?page=home&action=search" role="form">
                         <div class="input-group mb-4">
-                            <input type="text" class="form-control" id="inputMobileSearch" name="search" placeholder="Rechercher...">
+                            <input type="text" class="form-control" id="inputMobileSearch" name="search" placeholder="Rechercher..." value="<?php if (isset($search)) {
+                                                                                                                            echo $search;
+                                                                                                                        } ?>">
                             <button type="submit" class="input-group-text bg-success text-light">
                                 <i class="fa fa-fw fa-search text-white"></i>
                             </button>
