@@ -36,6 +36,9 @@ switch ($page) {
     case 'home': // Accueil
         include 'vues/home.php';
         break;
+    case 'search': // Recherche d'annonces
+        include 'controllers/home_controller.php';
+        break;
     case 'register': // Inscription
         include 'controllers/register_controller.php';
         break;

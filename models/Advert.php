@@ -281,4 +281,25 @@ class Advert
 
         return $res;
     }
+  
+    /**
+     * Recherche d'annonces
+     *
+     * @param  mixed $search
+     * @return array
+     */
+    public static function searchAdvert($search)
+    {
+        $req = MonPdo::getInstance()->prepare("SELECT * FROM ADVERTISEMENT as ad 
+        INNER JOIN USER as u ON ad.USER_idUser = u.idUser
+        WHERE isValid = 1 AND (u.canton LIKE :search OR u.city LIKE :search OR u.postalCode LIKE :search
+        OR ad.title LIKE :search OR ad.description LIKE :search) ORDER BY `title` ASC");
+        $strSearch = '%' . $search . '%';
+        $req->bindParam(':search', $strSearch);        
+        $req->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Advert');
+        $req->execute();
+        $res = $req->fetchAll();
+
+        return $res;
+    }
 }
