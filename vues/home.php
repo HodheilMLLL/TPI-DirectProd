@@ -4,7 +4,7 @@
             <div class="row text-center py-3">
                 <h1 class="h1">Annonces</h1>
                 <div class="col-lg-6 m-auto">
-                    <form class="col-md-9 m-auto" method="post" action="index.php?page=search&action=search" role="form">
+                    <form class="col-md-9 m-auto" method="post" action="index.php?page=home&action=search" role="form">
                         <div class="input-group mb-4">
                             <input type="text" class="form-control" id="inputMobileSearch" name="search" placeholder="Rechercher...">
                             <button type="submit" class="input-group-text bg-success text-light">

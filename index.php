@@ -3,7 +3,7 @@
 session_start();
 
 // Récupération de la page actuelle
-$page = filter_input(INPUT_GET, 'page') == null ? "home" : filter_input(INPUT_GET, 'page'); // Affichage de la page d'accueil par défaut
+$page = filter_input(INPUT_GET, 'page') == null ? "default" : filter_input(INPUT_GET, 'page'); // Affichage de la page d'accueil par défaut
 
 if (!isset($_SESSION['actualUser']['isConnected'])) {
     // Session de l'utilisateur
@@ -33,10 +33,10 @@ include 'vues/header.php';
 
 // Gestion des pages
 switch ($page) {
-    case 'home': // Accueil
+    case 'default': // Page d'accueil par défaut
         include 'vues/home.php';
         break;
-    case 'search': // Recherche d'annonces
+    case 'home': // Accueil
         include 'controllers/home_controller.php';
         break;
     case 'register': // Inscription
