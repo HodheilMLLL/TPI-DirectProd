@@ -129,7 +129,7 @@
                                     <a class="h2 text-decoration-none text-dark">' . $advert->getTitle() . '</a>';
 
                         echo '<p class="card-text">
-                                        ' . $advert->getDescription() . '
+                                        ' . $user->getDescription() . '
                                     </p>
                                     <ul class="list-unstyled d-flex justify-content-between mt-auto mb-0">
                                     <li>
