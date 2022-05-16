@@ -7,12 +7,27 @@
                     <form class="col-md-9 m-auto" method="post" action="index.php?page=home&action=search" role="form">
                         <div class="input-group mb-4">
                             <input type="text" class="form-control" id="inputMobileSearch" name="search" placeholder="Rechercher..." value="<?php if (isset($search)) {
-                                                                                                                            echo $search;
-                                                                                                                        } ?>">
+                                                                                                                                                echo $search;
+                                                                                                                                            } ?>">
                             <button type="submit" class="input-group-text bg-success text-light">
                                 <i class="fa fa-fw fa-search text-white"></i>
                             </button>
-
+                        </div>
+                        <h3 class="h3">Recherche avancée</h3>
+                        <div class="input-group mb-4">
+                            <select class="form-select" aria-label="Default select example" name="slNote">
+                                <option value="default" selected>Note minimum</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            <select class="form-select" aria-label="Default select example" name="slOrganic">
+                                <option value="default" selected>Bio ou non</option>
+                                <option value="1">Bio</option>
+                                <option value="0">Non bio</option>
+                            </select>
                         </div>
                     </form>
                 </div>
@@ -20,28 +35,53 @@
             <div class="row">
                 <?php
                 if (isset($search)) {
-                    $allAdverts = Advert::searchAdvert($search);
+                    $allAdverts = Advert::searchAdvert($search, $slOrganic);
                 } else {
                     $allAdverts = Advert::getAllValidAdverts();
                 }
+
 
                 foreach ($allAdverts as $advert) {
 
                     $idAdvert = $advert->getIdAdvert();
 
-                    // Récupère les informations de l'utiisateur de l'annonce
-                    $user = User::getUserByAdvertId($idAdvert);
-
-                    // Récupère les images de l'annonce
-                    $pictures = Picture::getPicturesByAdvertId($idAdvert);
-
-                    if (count($pictures) == 0) {
-                        $defaultPicture = "default.png";
+                    $countRates = Rate::countRatingByAdvertId($idAdvert);
+                    if ($countRates != 0) {
+                        // Calcul de la moyenne des avis
+                        $rates = Rate::getRatesByAdvertId($idAdvert);
+                        $totalRating = 0;
+                        foreach ($rates as $rate) {
+                            $totalRating += $rate->getRating();
+                        }
+                        $rating = round($totalRating / $countRates, 1);
+                        $stars = floor($rating); // Arrondi de la moyenne
+                        if (isset($slNote)) {
+                            if ($rating >= $slNote) {
+                                $canBeDisplayed = true;
+                            }
+                        }                        
                     } else {
-                        $defaultPicture = $pictures[0]->getPath();
+                        $canBeDisplayed = false;
+                    }
+                    if (!isset($slNote) || $slNote == "default") {
+                        $canBeDisplayed = true;
                     }
 
-                    echo '<div class="col-12 col-md-4 mb-4">
+                    if ($canBeDisplayed) {
+
+                        // Récupère les informations de l'utiisateur de l'annonce
+                        $user = User::getUserByAdvertId($idAdvert);
+
+                        // Récupère les images de l'annonce
+                        $pictures = Picture::getPicturesByAdvertId($idAdvert);
+
+                        if (count($pictures) == 0) {
+                            $defaultPicture = "default.png";
+                        } else {
+                            $defaultPicture = $pictures[0]->getPath();
+                        }
+
+                        echo '<div class="col-12 col-md-4 mb-4">
                             <div class="card h-100">
                                 <a href="index.php?page=details&action=show&idAdvert=' . $idAdvert . '">
                                     <img src="uploads/' . $defaultPicture . '" class="card-img-top" alt="Image d\'annonce" height="250">
@@ -51,42 +91,33 @@
                                         <li>';
 
 
-                    $countRates = Rate::countRatingByAdvertId($idAdvert);
-                    if ($countRates != 0) {
 
-                        // Calcul de la moyenne des avis
-                        $rates = Rate::getRatesByAdvertId($idAdvert);
-                        $totalRating = 0;
-                        foreach ($rates as $rate) {
-                            $totalRating += $rate->getRating();
-                        }
-                        $rating = round($totalRating / $countRates, 1);
-                        $stars = floor($rating); // Arrondi de la moyenne
-                        // Affichage dynamique des étoiles
-                        for ($i = 0; $i < $stars; $i++) {
+                        if ($countRates != 0) {
+                            // Affichage dynamique des étoiles
+                            for ($i = 0; $i < $stars; $i++) {
                 ?>
-                            <i class="text-warning fa fa-star"></i>
-                        <?php
-                        }
-                        for ($i = 0; $i < 5 - $stars; $i++) {
-                        ?>
-                            <i class="text-muted fa fa-star"></i>
+                                <i class="text-warning fa fa-star"></i>
+                            <?php
+                            }
+                            for ($i = 0; $i < 5 - $stars; $i++) {
+                            ?>
+                                <i class="text-muted fa fa-star"></i>
                 <?php
+                            }
+                            echo $rating;
+                        } else {
+                            echo "Aucun avis";
                         }
-                        echo $rating;
-                    } else {
-                        echo "Aucun avis";
-                    }
 
-                    echo '</li>';
-                    if ($advert->getIsOrganic() == 1) {
-                        echo '<li class="text-right">Bio</li>';
-                    }
-                    echo '</ul><p class="text-muted">' . $user->getCity() . ', ' . $user->getCanton() . '</p>
+                        echo '</li>';
+                        if ($advert->getIsOrganic() == 1) {
+                            echo '<li class="text-right">Bio</li>';
+                        }
+                        echo '</ul><p class="text-muted">' . $user->getCity() . ', ' . $user->getCanton() . '</p>
                                     
                                     <a class="h2 text-decoration-none text-dark">' . $advert->getTitle() . '</a>';
 
-                    echo '<p class="card-text">
+                        echo '<p class="card-text">
                                         ' . $advert->getDescription() . '
                                     </p>
                                     <ul class="list-unstyled d-flex justify-content-between mt-auto mb-0">
@@ -98,6 +129,7 @@
                                 </div>
                             </div>
                             </div>';
+                    }
                 }
                 ?>
             </div>

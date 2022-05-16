@@ -223,7 +223,7 @@ class User
             $username = "Anonyme";
         }
         if ($description == "") {
-            $description = "Aucune description";
+            $description = "Aucune biographie";
         }
 
         $req = MonPdo::getInstance()->prepare("INSERT INTO `USER`(`password`, `email`, `username`, `city`, `canton`, `postalCode`, `address`, `description`) VALUES (:myPassword, :email, :username, :city, :canton, :postalCode, :myAddress, :myDescription)");
@@ -250,6 +250,28 @@ class User
     public static function emailExists($email){
         $req = MonPdo::getInstance()->prepare("SELECT * FROM USER WHERE email = :email");
         $req->bindParam(':email', $email);
+        $req->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE,'User');
+        $req->execute();
+        $res=$req->fetch();
+
+        if ($res == null) {
+            return false;
+        } else {
+            return true;
+        }        
+    }
+
+    /**
+     * Vérifie si l'email est déjà utilisé, sauf l'utilisateur actuel
+     *
+     * @param  mixed $email
+     * @param  mixed $idUser
+     * @return bool
+     */
+    public static function editEmailExists($email, $idUser){
+        $req = MonPdo::getInstance()->prepare("SELECT * FROM USER WHERE email = :email AND idUser <> :idUser");
+        $req->bindParam(':email', $email);
+        $req->bindParam(':idUser', $idUser);
         $req->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE,'User');
         $req->execute();
         $res=$req->fetch();
@@ -362,7 +384,7 @@ class User
             $username = "Anonyme";
         }
         if ($description == "") {
-            $description = "Aucune description";
+            $description = "Aucune biographie";
         }
 
         $req = MonPdo::getInstance()->prepare("UPDATE `USER` SET `email` = :email, `username` = :username,`city` = :city,`canton` = :canton,`postalCode` = :postalCode,`address` = :myAddress, `description` = :myDescription WHERE `idUser` = :idUser");

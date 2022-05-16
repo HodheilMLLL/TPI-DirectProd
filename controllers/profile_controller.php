@@ -21,7 +21,7 @@ switch ($action) {
         $erreurs = array();
 
         // Si l'email est déjà utilisé
-        if (User::emailExists($email)) {
+        if (User::editEmailExists($email, $idUser)) {
             array_push($erreurs, "L'email est déjà utilisé");
         }
 

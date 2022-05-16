@@ -189,7 +189,7 @@ class Advert
         $req->bindParam(':idAdvert', $idAdvert);
         $req->execute();
     }
-  
+
     /**
      * Mise à jour d'une annonce
      *
@@ -207,7 +207,7 @@ class Advert
         $req->bindParam(':idAdvert', $idAdvert);
         $req->bindParam(':title', $title);
         $req->bindParam(':myDescription', $description);
-        $req->bindParam(':isOrganic', $isOrganic);    
+        $req->bindParam(':isOrganic', $isOrganic);
         $req->execute();
     }
 
@@ -226,7 +226,7 @@ class Advert
         return $res;
     }
 
-     /**
+    /**
      * Récupère toutes les annonces valides
      *
      * @return array
@@ -240,7 +240,7 @@ class Advert
 
         return $res;
     }
-    
+
     /**
      * Validation d'une annonce
      *
@@ -248,8 +248,8 @@ class Advert
      * @return void
      */
     public static function validateAdvert($idAdvert)
-    {       
-        $req = MonPdo::getInstance()->prepare("UPDATE `ADVERTISEMENT` SET `isValid` = 1 WHERE `idAdvertisement` = :idAdvert");  
+    {
+        $req = MonPdo::getInstance()->prepare("UPDATE `ADVERTISEMENT` SET `isValid` = 1 WHERE `idAdvertisement` = :idAdvert");
         $req->bindParam(':idAdvert', $idAdvert);
         $req->execute();
     }
@@ -261,8 +261,8 @@ class Advert
      * @return void
      */
     public static function rejectAdvert($idAdvert)
-    {       
-        $req = MonPdo::getInstance()->prepare("UPDATE `ADVERTISEMENT` SET `isValid` = 2 WHERE `idAdvertisement` = :idAdvert");  
+    {
+        $req = MonPdo::getInstance()->prepare("UPDATE `ADVERTISEMENT` SET `isValid` = 2 WHERE `idAdvertisement` = :idAdvert");
         $req->bindParam(':idAdvert', $idAdvert);
         $req->execute();
     }
@@ -281,21 +281,32 @@ class Advert
 
         return $res;
     }
-  
+
     /**
      * Recherche d'annonces
      *
      * @param  mixed $search
-     * @return array
+     * @param  mixed $isOrganic
+     * @return void
      */
-    public static function searchAdvert($search)
+    public static function searchAdvert($search, $isOrganic)
     {
-        $req = MonPdo::getInstance()->prepare("SELECT * FROM ADVERTISEMENT as ad 
-        INNER JOIN USER as u ON ad.USER_idUser = u.idUser
-        WHERE isValid = 1 AND (u.canton LIKE :search OR u.city LIKE :search OR u.postalCode LIKE :search
-        OR ad.title LIKE :search OR ad.description LIKE :search) ORDER BY `title` ASC");
+        if ($isOrganic != "default") {
+            $req = MonPdo::getInstance()->prepare("SELECT * FROM ADVERTISEMENT as ad 
+            INNER JOIN USER as u ON ad.USER_idUser = u.idUser
+            WHERE isValid = 1 AND isOrganic = :isOrganic AND (u.canton LIKE :search OR u.city LIKE :search OR u.postalCode LIKE :search
+            OR ad.title LIKE :search OR ad.description LIKE :search) ORDER BY `title` ASC");
+
+            $req->bindParam(':isOrganic', $isOrganic);
+        } else {
+            $req = MonPdo::getInstance()->prepare("SELECT * FROM ADVERTISEMENT as ad 
+            INNER JOIN USER as u ON ad.USER_idUser = u.idUser
+            WHERE isValid = 1 AND(u.canton LIKE :search OR u.city LIKE :search OR u.postalCode LIKE :search
+            OR ad.title LIKE :search OR ad.description LIKE :search) ORDER BY `title` ASC");
+        }        
+
         $strSearch = '%' . $search . '%';
-        $req->bindParam(':search', $strSearch);        
+        $req->bindParam(':search', $strSearch);
         $req->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Advert');
         $req->execute();
         $res = $req->fetchAll();
