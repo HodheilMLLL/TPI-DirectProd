@@ -1,3 +1,11 @@
+<?php
+/**
+ * Hodheil MLLL
+ * Mai 2022
+ * DirectProd
+ * adminAdvertManagement.php - page d'administration, gestion des annonces
+ */
+?>
 <!-- Start End Admin Advertisements Management -->
 <?php
 // Si l'utilisateur n'est pas admin

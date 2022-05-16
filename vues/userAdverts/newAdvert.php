@@ -1,3 +1,11 @@
+<?php
+/**
+ * Hodheil MLLL
+ * Mai 2022
+ * DirectProd
+ * newAdvert.php - page de création d'annonce
+ */
+?>
 <!-- Start New Advertisement -->
 <?php
 // Si l'utilisateur n'est pas connecté

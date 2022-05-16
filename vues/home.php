@@ -1,3 +1,11 @@
+<?php
+/**
+ * Hodheil MLLL
+ * Mai 2022
+ * DirectProd
+ * home.php - page d'accueil
+ */
+?>
     <!-- Start Advertisements -->
     <section class="bg-light">
         <div class="container py-5">

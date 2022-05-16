@@ -1,4 +1,11 @@
 <?php
+/**
+ * Hodheil MLLL
+ * Mai 2022
+ * DirectProd
+ * Rate.php - Classe représentant un avis 
+ */
+
 class Rate
 {
     private $idUser;

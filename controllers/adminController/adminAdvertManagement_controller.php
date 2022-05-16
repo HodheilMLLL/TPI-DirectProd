@@ -1,4 +1,11 @@
 <?php
+/**
+ * Hodheil MLLL
+ * Mai 2022
+ * DirectProd
+ * adminAdvertManagement_controller.php - Contrôleur de la page d'administration, gestion des annonces
+ */
+
 // Récupération de l'action
 $action = filter_input(INPUT_GET, 'action');
 

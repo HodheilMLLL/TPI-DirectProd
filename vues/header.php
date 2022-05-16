@@ -1,3 +1,11 @@
+<?php
+/**
+ * Hodheil MLLL
+ * Mai 2022
+ * DirectProd
+ * header.php - page contenant le header
+ */
+?>
 <!DOCTYPE html>
 <html lang="en">
 

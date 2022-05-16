@@ -1,3 +1,11 @@
+<?php
+/**
+ * Hodheil MLLL
+ * Mai 2022
+ * DirectProd
+ * footer.php - page contenant le footer
+ */
+?>
 <!-- Start Footer -->
 <footer class="bg-dark mt-auto" id="tempaltemo_footer">
     <div class="w-100 bg-black py-3">

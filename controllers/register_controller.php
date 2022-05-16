@@ -1,4 +1,11 @@
 <?php
+/**
+ * Hodheil MLLL
+ * Mai 2022
+ * DirectProd
+ * register_controller.php - Contrôleur de la page d'inscription 
+ */
+
 // Récupération de l'action
 $action = filter_input(INPUT_GET, 'action');
 

@@ -3,7 +3,7 @@
  * Hodheil MLLL
  * Mai 2022
  * DirectProd
- * register.php - page d'inscription
+ * login.php - page de connexion
  */
 ?>
 <!-- Start Login -->

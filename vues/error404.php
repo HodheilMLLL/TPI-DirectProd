@@ -1,3 +1,11 @@
+<?php
+/**
+ * Hodheil MLLL
+ * Mai 2022
+ * DirectProd
+ * error404.php - page de redirection si l'utilisateur se trouve sur une page non-existante
+ */
+?>
 <!-- Start Error 404 -->
 <div class="container">
     <div class="row p-5">

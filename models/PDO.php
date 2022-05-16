@@ -1,4 +1,10 @@
 <?php
+/**
+ * Hodheil MLLL
+ * Mai 2022
+ * DirectProd
+ * PDO.php - Classe s'occupant de la connexion avec la base de données
+ */
 
 class MonPdo
 {

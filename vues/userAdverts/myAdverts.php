@@ -1,3 +1,11 @@
+<?php
+/**
+ * Hodheil MLLL
+ * Mai 2022
+ * DirectProd
+ * myAdverts.php - page affichant les annonces de l'utilisateur
+ */
+?>
 <!-- Start My Advertisements -->
 <style>
     /* Permet d'aligner la dernière colonne sur la droite */

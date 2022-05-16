@@ -1,4 +1,11 @@
 <?php
+/**
+ * Hodheil MLLL
+ * Mai 2022
+ * DirectProd
+ * details.php - page de détails d'annonces
+ */
+
 // Récupération des données
 $idAdvert = filter_input(INPUT_GET, 'idAdvert');
 

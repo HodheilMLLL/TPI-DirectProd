@@ -1,4 +1,11 @@
 <?php
+/**
+ * Hodheil MLLL
+ * Mai 2022
+ * DirectProd
+ * Picture.php - Classe représentant une image 
+ */
+
 class Picture
 {
     private $idPicture;

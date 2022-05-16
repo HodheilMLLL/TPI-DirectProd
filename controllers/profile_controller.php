@@ -1,4 +1,11 @@
 <?php
+/**
+ * Hodheil MLLL
+ * Mai 2022
+ * DirectProd
+ * profile_controller.php - Contrôleur de la page de modification de profil
+ */
+
 // Récupération de l'action
 $action = filter_input(INPUT_GET, 'action');
 

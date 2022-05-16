@@ -1,4 +1,11 @@
 <?php
+/**
+ * Hodheil MLLL
+ * Mai 2022
+ * DirectProd
+ * User.php - Classe représentant un utilisateur 
+ */
+
 class User
 {
     private $idUser;

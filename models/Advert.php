@@ -1,4 +1,11 @@
 <?php
+/**
+ * Hodheil MLLL
+ * Mai 2022
+ * DirectProd
+ * Advert.php - Classe représentant une annonce
+ */
+
 class Advert
 {
     private $idAdvertisement;

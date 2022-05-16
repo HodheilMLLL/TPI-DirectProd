@@ -1,3 +1,11 @@
+<?php
+/**
+ * Hodheil MLLL
+ * Mai 2022
+ * DirectProd
+ * adminUserManagement.php - page d'administration, gestion des privilèges
+ */
+?>
 <!-- Start My Advertisements -->
 <?php
 // Si l'utilisateur n'est pas admin

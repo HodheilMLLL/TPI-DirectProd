@@ -1,4 +1,11 @@
 <?php
+/**
+ * Hodheil MLLL
+ * Mai 2022
+ * DirectProd
+ * editAdvert_controller.php - Contrôleur de la page de modification d'annonce 
+ */
+
 // Récupération de l'action
 $action = filter_input(INPUT_GET, 'action');
 
