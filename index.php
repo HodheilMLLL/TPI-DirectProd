@@ -1,4 +1,11 @@
 <?php
+/**
+ * Hodheil MLLL
+ * Mai 2022
+ * DirectProd
+ * index.php - page par défaut, c'est ici que sont gérées les liaisons entre les différentes pages
+ */
+
 // Démarrage de la session
 session_start();
 

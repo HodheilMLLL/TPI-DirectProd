@@ -1,3 +1,11 @@
+<?php
+/**
+ * Hodheil MLLL
+ * Mai 2022
+ * DirectProd
+ * profile.php - page de modification de profil
+ */
+?>
 <!-- Start Profile -->
 <?php
 // Si l'utilisateur n'est pas connecté

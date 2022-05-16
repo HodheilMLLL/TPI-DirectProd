@@ -1,3 +1,11 @@
+<?php
+/**
+ * Hodheil MLLL
+ * Mai 2022
+ * DirectProd
+ * register.php - page d'inscription
+ */
+?>
 <!-- Start Register -->
 <div class="container py-5">
     <div class="row py-5">

@@ -39,8 +39,7 @@
                 } else {
                     $allAdverts = Advert::getAllValidAdverts();
                 }
-
-
+                
                 foreach ($allAdverts as $advert) {
 
                     $idAdvert = $advert->getIdAdvert();
@@ -53,11 +52,15 @@
                         foreach ($rates as $rate) {
                             $totalRating += $rate->getRating();
                         }
-                        $rating = round($totalRating / $countRates, 1);
+                        $rating = round($totalRating / $countRates, 1); // Note arrondie
+
                         $stars = floor($rating); // Arrondi de la moyenne
+
                         if (isset($slNote)) {
                             if ($rating >= $slNote) {
                                 $canBeDisplayed = true;
+                            } else {
+                                $canBeDisplayed = false;
                             }
                         }                        
                     } else {
