@@ -49,7 +49,7 @@ if ($_SESSION['actualUser']['isConnected'] == false) {
             </div>
             <div class="form-group col-md-6 mb-3">
                 <label>Image(s)</label>
-                <input type="file" class="form-control mt-1" name="myImg[]" accept="image/*, video/*, audio/*" multiple>
+                <input type="file" class="form-control mt-1" name="myImg[]" accept="image/*" multiple>
             </div>
             <div class="row">
                 <div class="col text-end mt-2">

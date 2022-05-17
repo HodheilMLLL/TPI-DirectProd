@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Hodheil MLLL
  * Mai 2022
@@ -43,6 +44,11 @@ switch ($action) {
                 $isOrganic = 0; // Produit non bio
             }
 
+            // Vérification des champs obligatoires
+            if ($title == "" || $description == "") {
+                $erreur = 'Veuillez remplir les champs titres et description';
+            }
+
             // Modification de l'annonce
             $advert = new Advert();
             $advert->setTitle($title);
@@ -50,7 +56,7 @@ switch ($action) {
             $advert->setIsOrganic($isOrganic);
             $advert->setIdUser($idUser);
             Advert::updateAdvert($advert, $idAdvert);
-            
+
             // Traitement des images
             $countfiles = count(array_filter($_FILES['myImg']['name']));
 
@@ -87,7 +93,6 @@ switch ($action) {
                         $picture->setPath($newfilename);
                         $picture->setIdAdvert($idAdvert);
                         Picture::addPicture($picture);
-
                     } else //Sinon (la fonction renvoie FALSE).
                     {
                         // Annulation de la transaction
@@ -128,7 +133,7 @@ switch ($action) {
 
             // Redirection en cas d'erreur
             include 'vues/userAdverts/editAdvert.php';
-        }        
+        }
         break;
     case 'deletePicture': // Suppression d'une image
         // Récupération des données
@@ -147,7 +152,6 @@ switch ($action) {
 
             // Suppression de l'image
             Picture::deletePictureById($picture->getIdPicture());
-            
         } catch (\Throwable $th) {
             // Si une erreur est rencontrée, annulation de la transaction
             MonPdo::getInstance()->rollBack();
@@ -166,6 +170,6 @@ switch ($action) {
             $_SESSION['messageAlert']['message'] = "Erreur lors de la suppression de l'image";
         }
 
-        header('Location: index.php?page=editAdvert&action=show&idAdvert=' . $idAdvert . '');         
+        header('Location: index.php?page=editAdvert&action=show&idAdvert=' . $idAdvert . '');
         break;
 }

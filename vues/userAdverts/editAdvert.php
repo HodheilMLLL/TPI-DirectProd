@@ -67,7 +67,7 @@ $advert = Advert::getAdvertById($idAdvert);
             ?>
             <div class="form-group col-md-6 mb-3">
                 <label>Nouvelle(s) image(s)</label>
-                <input type="file" class="form-control mt-1" name="myImg[]" accept="image/*, video/*, audio/*" multiple>
+                <input type="file" class="form-control mt-1" name="myImg[]" accept="image/*" multiple>
             </div>
             <input name="idAdvert" type="hidden" value="<?= $idAdvert ?>">
             <div class="row">

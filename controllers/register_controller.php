@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Hodheil MLLL
  * Mai 2022
@@ -28,6 +29,11 @@ switch ($action) {
         // Tableau de traitement d'erreurs
         $erreurs = array();
 
+        // Vérification des champs obligatoires
+        if ($title == "" || $password == "" || $passwordConfirm == "" || $email == "" || $city == "" || $canton == "" || $postalCode == "" || $address == "") {
+            array_push($erreurs, "Veuillez remplir les obligatoires");
+        }
+
         // Si l'email est déjà utilisé
         if (User::emailExists($email)) {
             array_push($erreurs, "L'email est déjà utilisé");
@@ -44,7 +50,7 @@ switch ($action) {
         }
 
         if (count($erreurs) == 0) {
-            
+
             // Création de l'utilisateur
             $user = new User();
             $user->setPassword(password_hash($password, PASSWORD_DEFAULT));
@@ -68,8 +74,8 @@ switch ($action) {
             // Affichage d'un message d'erreur
             $_SESSION['messageAlert']['type'] = "danger";
             foreach ($erreurs as $erreur) {
-                $_SESSION['messageAlert']['message'] .= $erreur . "<br/>";  
-            }                 
+                $_SESSION['messageAlert']['message'] .= $erreur . "<br/>";
+            }
         }
         include 'vues/register.php';
         break;

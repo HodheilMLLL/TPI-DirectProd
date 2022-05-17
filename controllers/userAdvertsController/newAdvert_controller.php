@@ -41,6 +41,11 @@ switch ($action) {
                 $isOrganic = 0; // Produit non bio
             }
 
+            // Vérification des champs obligatoires
+            if ($title == "" || $description == "") {
+                array_push($erreurs, "Veuillez remplir les champs titres et description");
+            }
+
             // Création de l'annonce
             $advert = new Advert();
             $advert->setTitle($title);
