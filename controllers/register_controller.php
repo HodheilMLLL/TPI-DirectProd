@@ -30,8 +30,8 @@ switch ($action) {
         $erreurs = array();
 
         // Vérification des champs obligatoires
-        if ($title == "" || $password == "" || $passwordConfirm == "" || $email == "" || $city == "" || $canton == "" || $postalCode == "" || $address == "") {
-            array_push($erreurs, "Veuillez remplir les obligatoires");
+        if ($password == "" || $passwordConfirm == "" || $email == "" || $city == "" || $canton == "" || $postalCode == "" || $address == "") {
+            array_push($erreurs, "Veuillez remplir les champs obligatoires");
         }
 
         // Si l'email est déjà utilisé
